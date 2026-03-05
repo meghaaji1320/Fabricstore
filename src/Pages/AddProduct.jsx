@@ -25,7 +25,7 @@ const AddProduct = () => {
     addProduct(form);
     toast.success("Product added!");
     setForm({ title:"", price:"", image:"", description:"", category:"" });
-    navigate("/products");
+    navigate("/");
   };
 
   if (!user?.isAdmin) return <p className="text-center mt-10 text-red-500">Only Admin can add products.</p>;

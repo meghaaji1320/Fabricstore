@@ -58,21 +58,21 @@ const ListPage = () => {
             }`}
         />
 
-        <select
-          onChange={(e) => setCategory(e.target.value)}
-          className={`p-2 rounded-2xl outline-none border
-            ${
-              darkMode
-                ? "bg-gray-700 border-gray-600 text-white"
-                : "bg-white border-gray-300"
-            }`}
-        >
-          <option value="select">choose</option>
-          <option value="Net Fabrics">net fabrics</option>
-          <option value="Hakoba">Hakoba</option>
-          <option value="Hand Printed">hand printed</option>
-          <option value=" Embroidery ">embroidery</option>
-        </select>
+       <select
+  onChange={(e) => setCategory(e.target.value)}
+  className={`p-2 rounded-2xl outline-none border
+    ${
+      darkMode
+        ? "bg-gray-700 border-gray-600 text-white"
+        : "bg-white border-gray-300"
+    }`}
+>
+  <option value="">All Categories</option>
+  <option value="Net Fabrics">Net Fabrics</option>
+  <option value="Hakoba">Hakoba</option>
+  <option value="Hand Printed">Hand Printed</option>
+  <option value="Embroidery">Embroidery</option>
+</select>
       </div>
 
     

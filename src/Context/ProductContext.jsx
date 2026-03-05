@@ -43,7 +43,19 @@ export const ProductProvider = ({ children }) => {
 
   const [products, setProducts] = useState(() => {
     const stored = localStorage.getItem("products");
-    return stored ? JSON.parse(stored) : initialProducts;
+
+    if (stored) {
+      const parsed = JSON.parse(stored);
+
+      // if stored array empty → load initialProducts
+      if (parsed.length === 0) {
+        return initialProducts;
+      }
+
+      return parsed;
+    }
+
+    return initialProducts;
   });
 
   useEffect(() => {

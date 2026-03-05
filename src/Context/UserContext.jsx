@@ -63,7 +63,7 @@
 // };
 
 
-import { createContext, useEffect, useState, useContext } from "react";
+ import { createContext, useEffect, useState, useContext } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { CartContext } from "./CartContext";
@@ -75,45 +75,73 @@ export const UserProvider = ({ children }) => {
   const navigate = useNavigate();
   const { clearCart } = useContext(CartContext);
 
+  // Load users from localStorage or fallback to initialUsers
   const [users, setUsers] = useState(() => {
-    const stored = localStorage.getItem("users");
-    return stored ? JSON.parse(stored) : initialUsers;
+    const storedUsers = localStorage.getItem("users");
+
+    if (storedUsers) {
+      const parsed = JSON.parse(storedUsers);
+
+      // If stored users array is empty, use initialUsers
+      if (parsed.length === 0) {
+        return initialUsers;
+      }
+
+      return parsed;
+    }
+
+    return initialUsers;
   });
 
-  const [user, setUser] = useState(
-    JSON.parse(localStorage.getItem("user")) || null
-  );
+  // Logged in user
+  const [user, setUser] = useState(() => {
+    const storedUser = localStorage.getItem("user");
+    return storedUser ? JSON.parse(storedUser) : null;
+  });
 
+  // Save users to localStorage
   useEffect(() => {
     localStorage.setItem("users", JSON.stringify(users));
   }, [users]);
 
+  // Save logged in user
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(user));
   }, [user]);
 
-  const logout = () => {
-    setUser(null);
-    clearCart();
-    navigate("/");
-    toast.success("Logged out");
-  };
-
+  // Register new user
   const registerUsers = (data) => {
-    setUsers((prev) => [
-      ...prev,
-      { id: Date.now(), ...data, isAdmin: false },
-    ]);
+    const exists = users.find((x) => x.email === data.email);
+
+    if (exists) {
+      toast.error("User already exists");
+      return;
+    }
+
+    const newUser = {
+      id: Date.now(),
+      username: data.username,
+      email: data.email,
+      password: data.password,
+      isAdmin: false,
+    };
+
+    setUsers((prev) => [...prev, newUser]);
+
     toast.success("Successfully registered");
     navigate("/login");
   };
 
+  // Login user
   const loginUser = (data) => {
     const exist = users.find((x) => x.email === data.email);
 
-    if (!exist) return toast.error("User does not exist");
+    if (!exist) {
+      toast.error("User does not exist");
+      return;
+    }
 
-    if (exist.password === data.password) {
+    if (exist.password == data.password) {
       setUser(exist);
       toast.success("Logged in successfully");
       navigate("/");
@@ -122,9 +150,23 @@ export const UserProvider = ({ children }) => {
     }
   };
 
+  // Logout
+  const logout = () => {
+    setUser(null);
+    clearCart();
+    navigate("/");
+    toast.success("Logged out");
+  };
+
   return (
     <UserContext.Provider
-      value={{ registerUsers, loginUser, user, logout, users }}
+      value={{
+        users,
+        user,
+        registerUsers,
+        loginUser,
+        logout,
+      }}
     >
       {children}
     </UserContext.Provider>
