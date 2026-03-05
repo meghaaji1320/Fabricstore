@@ -20,7 +20,7 @@ export const initialProducts = [
         id:101,
         title:"gold and silver sequins",
         price:475,
-        image:"https://doeraa.com/cdn/shop/files/gold-and-silver-sequins-with-mauve-thread-wavy-embroidery-work-on-mauve-soft-net-fabric-386690.jpg?v=1715336163&width=400",
+        image:"https://i.pinimg.com/1200x/ad/8c/31/ad8c318ad4ffc3a9525c5810f2361993.jpg",
         description:"Gold And Silver Sequins With Mauve Thread Wavy Embroidery Work On Mauve Soft Net Fabric",
         category:"net fabrics"
     },
