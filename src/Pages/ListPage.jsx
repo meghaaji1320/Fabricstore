@@ -18,20 +18,20 @@ const ListPage = () => {
   }, [products]);
 
   useEffect(() => {
-    let data = products;
+  let data = products;
 
-    if (query.trim()) {
-      data = data.filter((x) =>
-        x.title.toLowerCase().includes(query.toLowerCase())
-      );
-    }
+  if (query.trim() !== "") {
+    data = data.filter((x) =>
+      x.title.toLowerCase().includes(query.toLowerCase())
+    );
+  }
 
-    if (category) {
-      data = data.filter((x) => x.category === category);
-    }
+  if (category !== "") {
+    data = data.filter((x) => x.category === category);
+  }
 
-    setFiltered(data);
-  }, [query, category, products]);
+  setFiltered(data);
+}, [query, category, products]);
 
   return (
     <div
