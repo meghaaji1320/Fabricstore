@@ -36,7 +36,7 @@ export const initialProducts = [
     id:103,
     title:"White Organza Fabric",
     price:675,
-    image:"https://doeraa.com/cdn/shop/files/MIT_1394.webp?v=1760854464&width=1000",
+    image:"https://i.pinimg.com/1200x/4c/5e/ba/4c5eba5c2796314840dbfc14dfbb08c8.jpg",
     description:"Leaf embroidery organza fabric",
     category:"Embroidery"
   },
