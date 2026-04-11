@@ -32,14 +32,7 @@ export const initialProducts = [
     description:"Floral embroidery georgette fabric",
     category:"Embroidery"
   },
-  {
-    id:103,
-    title:"White Organza Fabric",
-    price:675,
-    image:"https://i.pinimg.com/1200x/4c/5e/ba/4c5eba5c2796314840dbfc14dfbb08c8.jpg",
-    description:"Leaf embroidery organza fabric",
-    category:"Embroidery"
-  },
+ 
   {
     id:104,
     title:"Pink Beige Floral",
